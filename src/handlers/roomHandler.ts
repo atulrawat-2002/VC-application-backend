@@ -7,14 +7,15 @@ const roomHandler = (socket: Socket) => {
         const roomId = UUIDV4();
         socket.join(roomId);
         socket.emit("room-created", { roomId });
+        console.log("A new room has been creating room with id", roomId);
     };
 
-    const joinRoom = () => {
-        console.log("new room joined");
+    const joinedRoom = ({roomId}: {roomId: string}) => {
+        console.log("A new user has joined the room with id", roomId);
     };
 
     socket.on("create-room", createRoom);
-    socket.on("join-room", joinRoom);
+    socket.on("joined-room", joinedRoom);
 
 };
 

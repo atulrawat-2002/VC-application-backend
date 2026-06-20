@@ -2,8 +2,8 @@ import cors from "cors";
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
-import ServerConfig from "./config/serverConfig.ts";
-import roomHandler from "./handlers/roomHandler.ts";
+import ServerConfig from "./config/serverConfig.js";
+import roomHandler from "./handlers/roomHandler.js";
 
 const app = express();
 const server = http.createServer(app);
@@ -19,7 +19,6 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
     console.log("A connection established");
-
     roomHandler(socket);
 
     socket.on("disconnect", () => {
